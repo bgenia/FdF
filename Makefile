@@ -34,7 +34,7 @@ MLX_DIR			= $(LIB_DIR)/libmlx-linux
 MLX_FLAGS		= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 MLX_INCLUDE		= $(MLX_DIR)
 
-# Magic
+# Some magic
 LIB_FLAGS	= $(foreach LIB, $(LIBS), $($(LIB)_FLAGS))
 LIB_FILES	= $(foreach LIB, $(LIBS), $($(LIB)))
 
@@ -51,12 +51,10 @@ all:
 	$(MAKE) $(NAME)
 
 $(NAME): 		$(OBJ) $(LIB_FILES) | $(BIN_DIR)
-	$(info linking: $^ -> $@)
 	$(CC) $(CCFLAGS) $(filter-out $(LIB_FILES), $?) $(LIB_FLAGS) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c | $(OBJ_DIR)
 	mkdir -p $(@D)
-	$(info comiling: $^ -> $@)
 	$(CC) $(CCFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(OBJ_DIR) 		$(BIN_DIR):
