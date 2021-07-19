@@ -21,5 +21,6 @@ void	render_next_frame(t_renderer *renderer)
 	renderer->current_frame = renderer->next_frame;
 	render_current_frame(renderer);
 	renderer->next_frame = create_frame(renderer);
-	mlx_destroy_image(renderer->mlx, prev_frame.image);
+	if (prev_frame.image)
+		mlx_destroy_image(renderer->mlx, prev_frame.image);
 }

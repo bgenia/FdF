@@ -17,9 +17,9 @@ static unsigned long	get_pixel_memory_offset(
 
 void	draw_pixel(t_renderer *renderer, t_brush brush, t_spoint position)
 {
-	unsigned int	*pixel_address;
+	char	*pixel_address;
 
 	pixel_address = renderer->next_frame.address;
 	pixel_address += get_pixel_memory_offset(renderer->next_frame, position);
-	*pixel_address = brush.color;
+	*(unsigned int *)pixel_address = brush.color;
 }
