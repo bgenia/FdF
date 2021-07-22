@@ -1,46 +1,47 @@
 #include <math.h>
 
-#include "render.h"
+#include <stdio.h>
 
-static int	abs(int n)
+#include "render.h"
+#include "tuples.h"
+
+static double	abs(double n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
 }
 
-static double	direction(int a, int b)
+static double	get_step(double dx, double dy)
 {
-	if (a > b)
-		return (-1.);
-	return (1.);
+	if (abs(dx) >= abs(dy))
+		return (abs(dx));
+	else
+		return (abs(dy));
 }
 
-void	draw_line(t_renderer *renderer, t_brush brush, t_spoint a, t_spoint b)
+void	draw_line(t_renderer *renderer, t_brush brush, t_line line)
 {
-	double	tg;
-	double	x;
-	double	y;
+	t_double2	position;
+	t_double2	delta;
+	double		step;
+	int			i;
+	t_color		color;
 
-	tg = (double)abs(a.y - b.y) / (double)abs(a.x - b.x);
-	x = a.x;
-	y = a.y;
-	while ((int)floor(x) != b.x || (int)floor(y) != b.y)
+	delta.x = (line.b.x - line.a.x);
+	delta.y = (line.b.y - line.a.y);
+	step = get_step(delta.x, delta.y);
+	delta.x /= step;
+	delta.y /= step;
+	position.x = line.a.x;
+	position.y = line.a.y;
+	i = 0;
+	while (i < step)
 	{
-		draw_pixel(
-			renderer,
-			brush,
-			(t_spoint){.x = (int)floor(x), .y = (int)floor(y)}
-			);
-		if (tg < 1)
-		{
-			x += 1 * direction(a.x, b.x);
-			y += tg * direction(a.y, b.y);
-		}
-		else
-		{
-			x += 1 / tg * direction(a.x, b.x);
-			y += 1 * direction(a.y, b.y);
-		}
+		color = gradient_get_color(brush.color, brush.color2, step, i);
+		draw_pixel(renderer, color, int2(position.x, position.y));
+		position.x += delta.x;
+		position.y += delta.y;
+		i++;
 	}
 }

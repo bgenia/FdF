@@ -1,18 +1,30 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-typedef struct s_matrix
+typedef struct s_dmatrix
 {
 	int		m;
 	int		n;
-	double	**value;
-}	t_matrix;
+	double	*value;
+}
+t_dmatrix;
 
-t_matrix	matrix_create(int m, int n, double **value);
+t_dmatrix
+dmatrix_create(int m, int n, double *value);
 
-void		matrix_multiply(t_matrix a, t_matrix b, t_matrix *result);
+double
+dmatrix_get(t_dmatrix matrix, int i, int j);
+void
+dmatrix_set(t_dmatrix matrix, int i, int j, double value);
 
-t_matrix	m_isometric_projection(double z_scale);
-t_matrix	m_vector(double x, double y, double z);
+void
+dmatrix_multiply(t_dmatrix a, t_dmatrix b, t_dmatrix *result);
+
+t_dmatrix
+m_isometric_projection(double z_scale);
+t_dmatrix
+m_vector(double x, double y, double z);
+t_dmatrix
+m_rotation(double angle);
 
 #endif

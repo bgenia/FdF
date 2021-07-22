@@ -1,8 +1,8 @@
 #include "matrix.h"
 
-t_matrix	matrix_init(int m, int n, double **value)
+t_dmatrix	dmatrix_create(int m, int n, double *value)
 {
-	t_matrix	matrix;
+	t_dmatrix	matrix;
 
 	matrix.m = m;
 	matrix.n = n;

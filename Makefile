@@ -14,10 +14,10 @@ SRC		!= find $(SRC_DIR) -type f -name '*.c'
 OBJ		= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Compilation
-CC			= clang
+CC			= gcc
 
 CCFLAGS		= -g -fsanitize=address
-CPPFLAGS	= -Wall -Werror -Wextra
+CPPFLAGS	= # -Wall -Werror -Wextra
 
 # External libraries
 LIBS	+= LIBFT
