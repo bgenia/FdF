@@ -1,16 +1,16 @@
 #include <stdlib.h>
 
-#include "space.h"
+#include "heightmap.h"
 
-void	space3d_free(t_space3d *space)
+void	heightmap_free(t_heightmap *map)
 {
 	int	row;
 
 	row = 0;
-	while (row < space->height)
+	while (row < map->height)
 	{
-		free(space->points[row]);
+		free(map->points[row]);
 		row++;
 	}
-	free(space->points);
+	free(map->points);
 }

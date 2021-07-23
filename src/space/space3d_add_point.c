@@ -1,29 +1,29 @@
 #include "libft/memory.h"
 
-#include "space.h"
+#include "heightmap.h"
 
 #include <stdio.h>
 
-int	space3d_add_point(t_space3d *space, int z)
+int	heightmap_add_point(t_heightmap *map, int z)
 {
-	if (!space->points)
-		if (!space3d_add_line(space))
+	if (!map->points)
+		if (!heightmap_add_line(map))
 			return (0);
-	space->points[space->y] = ft_reallocarray(
-			space->points[space->y],
-			space->width,
-			space->width + 1,
-			sizeof(*space->points[space->y])
+	map->points[map->y] = ft_reallocarray(
+			map->points[map->y],
+			map->width,
+			map->width + 1,
+			sizeof(*map->points[map->y])
 			);
-	if (!space->points[space->y])
+	if (!map->points[map->y])
 		return (0);
-	space->width++;
-	if (space->width > 1)
-		space->x++;
-	space->points[space->y][space->x] = z;
-	if (z > space->max_elevation)
-		space->max_elevation = z;
-	if (z < space->min_elevation)
-		space->min_elevation = z;
+	map->width++;
+	if (map->width > 1)
+		map->x++;
+	map->points[map->y][map->x] = z;
+	if (z > map->max_elevation)
+		map->max_elevation = z;
+	if (z < map->min_elevation)
+		map->min_elevation = z;
 	return (1);
 }

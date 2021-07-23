@@ -5,9 +5,9 @@
 #include "libft/types.h"
 #include "libft/utils.h"
 
-#include "space.h"
+#include "heightmap.h"
 
-static int	add_points(t_space3d *space, char **words)
+static int	add_points(t_heightmap *map, char **words)
 {
 	int	i;
 	int	result;
@@ -16,7 +16,7 @@ static int	add_points(t_space3d *space, char **words)
 	result = 1;
 	while (words[i])
 	{
-		if (!space3d_add_point(space, ft_atoi(words[i])))
+		if (!heightmap_add_point(map, ft_atoi(words[i])))
 		{
 			result = 0;
 			break ;
@@ -33,7 +33,7 @@ static int	add_points(t_space3d *space, char **words)
 	return (result);
 }
 
-int	parse_fdf(int fd, t_space3d *space)
+int	parse_fdf(int fd, t_heightmap *map)
 {
 	char	*state;
 	char	*line;
@@ -44,11 +44,11 @@ int	parse_fdf(int fd, t_space3d *space)
 	gnl_status = ft_get_next_line(fd, &line, &state, 32);
 	while (gnl_status == GNL_LINE)
 	{
-		space3d_add_line(space);
+		heightmap_add_line(map);
 		words = ft_split(line, ' ');
 		if (!words)
 			return (ft_free2pass(line, state, 0));
-		if (!add_points(space, words))
+		if (!add_points(map, words))
 			break ;
 		free(line);
 		gnl_status = ft_get_next_line(fd, &line, &state, 32);

@@ -30,8 +30,7 @@ color_get_blue(t_color color);
 
 t_color
 gradient_get_color(t_color from, t_color to, int step, int n);
-
 t_color
-get_height_color(int height);
+linear_gradient(t_color colors[], int scales[], int n);
 
 #endif

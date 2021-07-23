@@ -1,9 +1,9 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "space.h"
+# include "heightmap.h"
 
 void
-parse_fdf(int fd, t_space3d *space);
+parse_fdf(int fd, t_heightmap *map);
 
 #endif

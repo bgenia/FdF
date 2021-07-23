@@ -1,17 +1,17 @@
 #include <stdlib.h>
 
-#include "space.h"
+#include "heightmap.h"
 
-t_space3d	space3d_init(void)
+t_heightmap	heightmap_init(void)
 {
-	t_space3d	space;
+	t_heightmap	map;
 
-	space.width = 0;
-	space.height = 0;
-	space.max_elevation = 0;
-	space.min_elevation = 0;
-	space.x = 0;
-	space.y = 0;
-	space.points = NULL;
-	return (space);
+	map.width = 0;
+	heightmap.height = 0;
+	map.max_elevation = 0;
+	map.min_elevation = 0;
+	map.x = 0;
+	map.y = 0;
+	map.points = NULL;
+	return (map);
 }

@@ -1,22 +1,22 @@
-#include "space.h"
+#include "heightmap.h"
 
-void	space3d_points_foreach(
-	t_space3d *space,
-	void (*f)(t_space3d *space, t_int3 point)
+void	heightmap_points_foreach(
+	t_heightmap *map,
+	void (*f)(t_heightmap *map, t_int3 point)
 )
 {
 	int	x;
 	int	y;
 
-	if (!space->points)
+	if (!map->points)
 		return ;
 	y = 0;
-	while (y < space->height)
+	while (y < map->height)
 	{
 		x = 0;
-		while (x < space->width)
+		while (x < map->width)
 		{
-			f(space, (t_int3){.x = x, .y = y, .z = space->points[y][x]});
+			f(map, (t_int3){.x = x, .y = y, .z = map->points[y][x]});
 			x++;
 		}
 		y++;

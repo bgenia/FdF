@@ -23,6 +23,8 @@ dmatrix_multiply(t_dmatrix a, t_dmatrix b, t_dmatrix *result);
 t_dmatrix
 m_isometric_projection(double z_scale);
 t_dmatrix
+m_military_projection(double z_scale);
+t_dmatrix
 m_vector(double x, double y, double z);
 t_dmatrix
 m_rotation(double angle);
