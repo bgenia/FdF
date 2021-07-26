@@ -19,6 +19,7 @@ char	*ft_read_line(t_reader *reader)
 	int		status;
 	char	*line;
 
+	line = NULL;
 	status = ft_get_next_line(
 			reader->fd,
 			&line,
