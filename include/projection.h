@@ -1,8 +1,7 @@
 #ifndef PROJECTION_H
 # define PROJECTION_H
 
-# include "tuples.h"
-# include "matrix.h"
+# include "libft/tuples.h"
 
 typedef struct s_projection
 {
@@ -11,6 +10,9 @@ typedef struct s_projection
 }
 t_projection;
 
-t_dmatrix	projection_matrix(t_projection projection);
+t_projection
+projection_line(void);
+t_projection
+projection_isometric(void);
 
 #endif
