@@ -3,7 +3,7 @@
 
 # include "heightmap.h"
 
-void
+int
 parse_fdf(int fd, t_heightmap *map);
 
 #endif
