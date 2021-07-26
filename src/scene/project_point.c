@@ -22,7 +22,7 @@ t_int2	project_point(t_int3 point, t_view view, double scale)
 	transform_vector(transformation, v2, v1);
 	v1[0] += view.render_offset.x;
 	v1[1] += view.render_offset.y;
-	result.x = round(v1[0] * scale);
-	result.y = round(v1[1] * scale);
+	result.x = round(v1[0] * (scale + view.zoom));
+	result.y = round(v1[1] * (scale + view.zoom));
 	return (result);
 }
