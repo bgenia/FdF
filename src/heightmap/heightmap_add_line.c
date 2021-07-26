@@ -6,14 +6,17 @@
 
 int	heightmap_add_line(t_heightmap *map)
 {
-	map->points = ft_reallocarray(
+	int	**temp_rows;
+
+	temp_rows = ft_reallocarray(
 			map->points,
 			map->height,
 			map->height + 1,
 			sizeof(*map->points)
 			);
-	if (!map->points)
+	if (!temp_rows)
 		return (0);
+	map->points = temp_rows;
 	map->height++;
 	if (map->height > 1)
 		map->y++;

@@ -1,5 +1,6 @@
+#include "libft/tuples.h"
+
 #include "heightmap.h"
-#include "tuples.h"
 
 static void	i_vertical_edges(
 	t_heightmap *map,

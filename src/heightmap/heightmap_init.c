@@ -2,12 +2,12 @@
 
 #include "heightmap.h"
 
-t_heightmap	heightmap_init(void)
+t_heightmap	heightmap_create(void)
 {
 	t_heightmap	map;
 
 	map.width = 0;
-	heightmap.height = 0;
+	map.height = 0;
 	map.max_elevation = 0;
 	map.min_elevation = 0;
 	map.x = 0;
