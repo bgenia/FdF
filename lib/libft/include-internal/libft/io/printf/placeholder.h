@@ -1,0 +1,44 @@
+#ifndef PLACEHOLDER_H
+# define PLACEHOLDER_H
+
+typedef unsigned char	t_flag_field;
+
+# define FLAG_LEFT_ALIGN	0b0000001U
+# define FLAG_ZERO_PAD		0b0000010U
+# define FLAG_BLANK_PLUS	0b0000100U
+# define FLAG_FORCE_SIGN	0b0001000U
+# define FLAG_ALT_FORM		0b0010000U
+# define FLAG_ARG_WIDTH		0b0100000U
+# define FLAG_ARG_PRECISION	0b1000000U
+
+typedef unsigned short	t_type_field;
+
+# define TYPE_SIZE_L	0b1000000000000000U
+# define TYPE_SIZE_LL	0b0100000000000000U
+# define TYPE_SIZE_H	0b0010000000000000U
+# define TYPE_SIZE_HH	0b0001000000000000U
+
+# define TYPE_C			0b0000000000000001U
+# define TYPE_S			0b0000000000000010U
+# define TYPE_P			0b0000000000000100U
+# define TYPE_DI		0b0000000000001000U
+# define TYPE_U			0b0000000000010000U
+# define TYPE_XL		0b0000000000100000U
+# define TYPE_XU		0b0000000001000000U
+# define TYPE_N			0b0000000010000000U
+# define TYPE_F			0b0000000100000000U
+# define TYPE_E			0b0000001000000000U
+# define TYPE_G			0b0000010000000000U
+# define TYPE_PERCENT	0b0000100000000000U
+
+# define TYPE_INVALID	0b0000000000000000U
+
+typedef struct s_placeholder
+{
+	t_flag_field	flags;
+	t_type_field	type;
+	int				width;
+	int				precision;
+}	t_placeholder;
+
+#endif
