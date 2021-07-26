@@ -4,18 +4,20 @@
 
 #include "mlx.h"
 
+#include "libft/io/printf.h"
+
 #include "heightmap.h"
+#include "parser.h"
 #include "render.h"
 #include "scene.h"
 #include "fdf.h"
 
-static void	close_esc_hook(int key_code, t_scene *scene)
+#ifndef BONUS
+
+static void	print_controls(void)
 {
-	if (key_code != 65307)
-		return ;
-	renderer_destroy(&scene->renderer);
-	heightmap_free(&scene->map);
-	exit(EXIT_SUCCESS);
+	ft_printf("Scene contols:\n");
+	ft_printf("[Esc] - Exit\n");
 }
 
 int	main(int argv, char **argc)
@@ -30,17 +32,21 @@ int	main(int argv, char **argc)
 		return (0);
 	fd = open(argc[1], O_RDONLY);
 	if (fd == -1)
-		return ;
+		return (0);
 	map = heightmap_create();
 	parse_fdf(fd, &map);
 	view = view_create(map, projection_isometric());
 	renderer = renderer_create(W_WIDTH, W_HEIGHT, "bgenia/FdF");
 	scene = scene_create(map, view, renderer);
-	heightmap_edges_foreach(&map, render_edge, &scene);
+	render_scene(scene);
 	render_next_frame(&scene.renderer);
-	mlx_key_hook(scene.renderer.window, close_esc_hook, &scene);
+	mlx_key_hook(scene.renderer.window, (void *)close_esc_hook, &scene);
+	print_controls();
 	mlx_loop(scene.renderer.mlx);
 	renderer_destroy(&renderer);
 	heightmap_free(&scene.map);
 	close(fd);
+	return (0);
 }
+
+#endif
