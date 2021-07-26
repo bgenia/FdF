@@ -1,7 +1,7 @@
 #ifndef HEIGHTMAP_H
 # define HEIGHTMAP_H
 
-# include "tuples.h"
+# include "libft/tuples.h"
 
 typedef struct s_heightmap
 {
@@ -15,7 +15,7 @@ typedef struct s_heightmap
 }	t_heightmap;
 
 t_heightmap
-heightmap_init(void);
+heightmap_create(void);
 void
 heightmap_free(t_heightmap *map);
 
