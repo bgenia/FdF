@@ -1,32 +1,18 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-typedef struct s_dmatrix
-{
-	int		m;
-	int		n;
-	double	*value;
-}
-t_dmatrix;
+# include "projection.h"
 
-t_dmatrix
-dmatrix_create(int m, int n, double *value);
+typedef double		t_vector3[3];
 
-double
-dmatrix_get(t_dmatrix matrix, int i, int j);
-void
-dmatrix_set(t_dmatrix matrix, int i, int j, double value);
+typedef t_vector3	t_matrix3x3[3];
 
 void
-dmatrix_multiply(t_dmatrix a, t_dmatrix b, t_dmatrix *result);
+transform_vector(t_matrix3x3 matrix, t_vector3 vector, t_vector3 result);
 
-t_dmatrix
-m_isometric_projection(double z_scale);
-t_dmatrix
-m_military_projection(double z_scale);
-t_dmatrix
-m_vector(double x, double y, double z);
-t_dmatrix
-m_rotation(double angle);
+void
+rotation_matrix(double angle, t_matrix3x3 matrix);
+void
+projection_matrix(t_projection projection, t_matrix3x3 matrix);
 
 #endif
