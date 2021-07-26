@@ -103,13 +103,13 @@ SRC_LIST = 										\
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
-SRC != find src -type f -name '*.c'
+# SRC != find src -type f -name '*.c'
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 INCLUDE		= include include-internal
 
-CFLAGS		+= -Wall -Werror -Wextra -g
-CPPFLAGS	+= $(addprefix -I, $(INCLUDE))
+CFLAGS		= -Wall -Werror -Wextra
+CPPFLAGS	= $(addprefix -I, $(INCLUDE))
 
 .PHONY: all
 all: $(NAME)
