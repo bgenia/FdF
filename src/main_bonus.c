@@ -41,21 +41,12 @@ static void	controls_hook(int key_code, t_scene *scene)
 	render_next_frame(&scene->renderer);
 }
 
-int	main(int argv, char **argc)
+void	_main(t_heightmap map)
 {
-	int			fd;
-	t_heightmap	map;
 	t_renderer	renderer;
 	t_view		view;
 	t_scene		scene;
 
-	if (argv != 2)
-		return (0);
-	fd = open(argc[1], O_RDONLY);
-	if (fd == -1)
-		return (0);
-	map = heightmap_create();
-	parse_fdf(fd, &map);
 	view = view_create(map, projection_isometric());
 	renderer = renderer_create(W_WIDTH, W_HEIGHT, "bgenia/FdF");
 	scene = scene_create(map, view, renderer);
@@ -65,7 +56,26 @@ int	main(int argv, char **argc)
 	print_controls();
 	mlx_loop(scene.renderer.mlx);
 	renderer_destroy(&renderer);
-	heightmap_free(&scene.map);
+}
+
+int	main(int argv, char **argc)
+{
+	int			fd;
+	t_heightmap	map;
+
+	if (argv != 2)
+		return (0);
+	fd = open(argc[1], O_RDONLY);
+	if (fd == -1)
+		return (0);
+	map = heightmap_create();
+	if (!parse_fdf(fd, &map))
+	{
+		close(fd);
+		return (0);
+	}
+	_main(map);
+	heightmap_free(&map);
 	close(fd);
 	return (0);
 }
