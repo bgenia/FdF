@@ -1,26 +1,17 @@
-#include <math.h>
-
-#include <stdio.h>
+#include "libft/tuples.h"
+#include "libft/math.h"
 
 #include "render.h"
-#include "tuples.h"
-
-static double	abs(double n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
 
 static double	get_step(double dx, double dy)
 {
-	if (abs(dx) >= abs(dy))
-		return (abs(dx));
+	if (ft_absd(dx) >= ft_absd(dy))
+		return (ft_absd(dx));
 	else
-		return (abs(dy));
+		return (ft_absd(dy));
 }
 
-void	draw_line(t_renderer *renderer, t_brush brush, t_line line)
+void	draw_line(t_renderer *renderer, t_brush brush, t_int2 from, t_int2 to)
 {
 	t_double2	position;
 	t_double2	delta;
@@ -28,13 +19,13 @@ void	draw_line(t_renderer *renderer, t_brush brush, t_line line)
 	int			i;
 	t_color		color;
 
-	delta.x = (line.b.x - line.a.x);
-	delta.y = (line.b.y - line.a.y);
+	delta.x = (to.x - from.x);
+	delta.y = (to.y - from.y);
 	step = get_step(delta.x, delta.y);
 	delta.x /= step;
 	delta.y /= step;
-	position.x = line.a.x;
-	position.y = line.a.y;
+	position.x = from.x;
+	position.y = from.y;
 	i = 0;
 	while (i < step)
 	{
