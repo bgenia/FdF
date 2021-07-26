@@ -1,5 +1,5 @@
-#ifndef MAIN_COMMON_H
-# define MAIN_COMMON_H
+#ifndef FDF_H
+# define FDF_H
 
 # include "libft/tuples.h"
 
