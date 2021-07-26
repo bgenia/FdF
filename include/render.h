@@ -2,7 +2,7 @@
 # define RENDER_H
 
 # include "mlx.h"
-# include "tuples.h"
+# include "libft/tuples.h"
 # include "color.h"
 
 typedef struct s_image_data
@@ -33,11 +33,9 @@ typedef struct s_brush
 }
 t_brush;
 
-//FIXME: Implement
 t_brush
 brush_solid(t_color color);
 
-//FIXME: Implement
 t_brush
 brush_gradient(t_color from, t_color to);
 
@@ -45,21 +43,17 @@ t_image_data
 create_frame(t_renderer *renderer);
 
 t_renderer
-renderer_init(void *mlx, void *window, int width, int height);
+renderer_create(int width, int height, char *title);
+void
+renderer_destroy(t_renderer *renderer);
+
 void
 render_next_frame(t_renderer *renderer);
 
 void
 draw_pixel(t_renderer *renderer, t_color color, t_int2 position);
 
-typedef struct s_line
-{
-	t_int2	a;
-	t_int2	b;
-}
-t_line;
-
 void
-draw_line(t_renderer *renderer, t_brush brush, t_line line);
+draw_line(t_renderer *renderer, t_brush brush, t_int2 from, t_int2 to);
 
 #endif
