@@ -62,6 +62,7 @@ LIBFT			= $(LIBFT_DIR)/libft.a
 LIBFT_DIR		= $(LIB_DIR)/libft
 LIBFT_FLAGS		= -L$(LIBFT_DIR) -lft
 LIBFT_INCLUDE	= $(LIBFT_DIR)/include
+LIBFT_CLEAN		= $(MAKE) clean -C $(LIBFT_DIR)
 
 LIBS	+= MLX
 
@@ -69,6 +70,7 @@ MLX				= $(MLX_DIR)/libmlx.a
 MLX_DIR			= $(LIB_DIR)/libmlx-linux
 MLX_FLAGS		= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 MLX_INCLUDE		= $(MLX_DIR)
+MLX_CLEAN		= $(MAKE) clean -C $(MLX_DIR)
 
 # Some magic
 LIB_FLAGS	= $(foreach LIB, $(LIBS), $($(LIB)_FLAGS))
@@ -101,10 +103,16 @@ $(OBJ_DIR) 		$(BIN_DIR):
 clean:
 	$(RM) -rf $(OBJ)
 	$(RM) -rf $(OBJ_DIR)/*
+	$(foreach LIB, $(LIBS),			\
+		$($(LIB)_CLEAN) ;			\
+	)
 
 .PHONY:		fclean
 fclean:		clean
 	$(RM) -rf $(NAME)
+	$(foreach LIB, $(LIBS),			\
+		$(RM) -rf $($(LIB)) ;		\
+	)
 
 .PHONY:		re
 re:			fclean
