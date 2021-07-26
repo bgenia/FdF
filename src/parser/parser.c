@@ -1,9 +1,8 @@
 #include <stdlib.h>
 
-#include "libft/io/get_next_line.h"
+#include "libft/io/reader.h"
 #include "libft/string.h"
 #include "libft/types.h"
-#include "libft/utils.h"
 
 #include "heightmap.h"
 
@@ -35,25 +34,28 @@ static int	add_points(t_heightmap *map, char **words)
 
 int	parse_fdf(int fd, t_heightmap *map)
 {
-	char	*state;
-	char	*line;
-	char	**words;
-	int		gnl_status;
+	t_reader	reader;
+	char		*line;
+	char		**words;
+	int			error;
 
-	state = NULL;
-	gnl_status = ft_get_next_line(fd, &line, &state, 32);
-	while (gnl_status == GNL_LINE)
+	error = 0;
+	reader = ft_reader_create(fd, READER_DEFAULT_BUFSIZE);
+	line = ft_read_line(&reader);
+	while (reader.status == READER_LINE)
 	{
-		heightmap_add_line(map);
 		words = ft_split(line, ' ');
-		if (!words)
-			return (ft_free2pass(line, state, 0));
-		if (!add_points(map, words))
+		if (!heightmap_add_line(map) || !words || !add_points(map, words))
+		{
+			error = 1;
 			break ;
+		}
 		free(line);
-		gnl_status = ft_get_next_line(fd, &line, &state, 32);
+		line = ft_read_line(&reader);
 	}
 	free(line);
-	free(state);
-	return (gnl_status == GNL_EOF);
+	ft_reader_free(&reader);
+	if (error || reader.status == READER_ERROR)
+		heightmap_free(map);
+	return (!error && reader.status != READER_ERROR);
 }
