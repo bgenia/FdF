@@ -24,22 +24,4 @@ heightmap_add_line(t_heightmap *map);
 int
 heightmap_add_point(t_heightmap *map, int z);
 
-void
-heightmap_points_foreach(
-	t_heightmap *map,
-	void (*f)(t_heightmap *map, t_int3 point)
-	);
-void
-heightmap_edges_foreach(
-	t_heightmap *map,
-	void (*f)(t_heightmap *map, t_int3 a, t_int3 b, void *p),
-	void *p
-	);
-void
-heightmap_edges_rforeach(
-	t_heightmap *map,
-	void (*f)(t_heightmap *map, t_int3 a, t_int3 b, void *p),
-	void *p
-	);
-
 #endif
