@@ -7,7 +7,7 @@
 #include "heightmap.h"
 #include "render.h"
 #include "scene.h"
-#include "main_common.h"
+#include "fdf.h"
 
 static void	close_esc_hook(int key_code, t_scene *scene)
 {
