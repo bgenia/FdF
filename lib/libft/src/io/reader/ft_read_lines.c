@@ -3,6 +3,21 @@
 #include "libft/io/reader.h"
 #include "libft/memory.h"
 
+static void	handle_eof(t_reader *reader, char *line, char ***lines, int i)
+{
+	char	**temp_lines;
+
+	if (reader->status == READER_EOF)
+	{
+		(*lines)[i - 1] = line;
+		temp_lines = ft_reallocarray(*lines, i, i + 1, sizeof(**lines));
+		if (!temp_lines)
+			reader->status = READER_ERROR;
+		else
+			*lines = temp_lines;
+	}
+}
+
 static int	read_lines(t_reader *reader, char ***lines)
 {
 	char	**temp_lines;
@@ -24,15 +39,7 @@ static int	read_lines(t_reader *reader, char ***lines)
 		line = ft_read_line(reader);
 		i++;
 	}
-	if (reader->status == READER_EOF)
-	{
-		(*lines)[i - 1] = line;
-		temp_lines = ft_reallocarray(*lines, i, i + 1, sizeof(**lines));
-		if (!temp_lines)
-			reader->status = READER_ERROR;
-		else
-			*lines = temp_lines;
-	}
+	handle_eof(reader, line, lines, i);
 	return (i);
 }
 
