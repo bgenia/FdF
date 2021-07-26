@@ -23,13 +23,13 @@ void	scene_controls_hook(int key_code, t_scene *scene)
 	if (key_code == 0x73)
 		scene->view.render_offset.y++;
 	if (key_code == 0x71)
-		scene->view.angle -= M_PI / 12;
-	if (key_code == 0x65)
 		scene->view.angle += M_PI / 12;
+	if (key_code == 0x65)
+		scene->view.angle -= M_PI / 12;
 	if (key_code == 0x72)
-		scene->view.zoom += 4;
+		scene->view.zoom += 2;
 	if (key_code == 0x66)
-		scene->view.zoom -= 4;
+		scene->view.zoom -= 2;
 	if (scene->view.angle > M_PI)
 		scene->view.angle -= M_PI * 2;
 	if (scene->view.angle < -M_PI)
