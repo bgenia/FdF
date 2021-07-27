@@ -16,11 +16,12 @@
 
 static void	print_controls(void)
 {
+	ft_printf("App contols:\n");
+	ft_printf("[Esc] - Exit\n");
 	ft_printf("Scene contols:\n");
 	ft_printf("[W][A][S][D] - Move across the scene\n");
 	ft_printf("[Q][E] - Rotate the scene to the left/right\n");
 	ft_printf("[R][F] - Zoom in and out of the scene\n");
-	ft_printf("[Esc] - Exit\n");
 	ft_printf("Projection controls:\n");
 	ft_printf("[1] - Reset to isometric projection\n");
 	ft_printf("[2] - Decrease XY angle\n");

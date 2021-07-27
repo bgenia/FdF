@@ -16,7 +16,7 @@
 
 static void	print_controls(void)
 {
-	ft_printf("Scene contols:\n");
+	ft_printf("App contols:\n");
 	ft_printf("[Esc] - Exit\n");
 }
 
