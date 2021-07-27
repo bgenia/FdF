@@ -28,6 +28,9 @@ t_scene;
 t_view
 view_create(t_heightmap map, t_projection projection);
 
+int
+view_direction(t_view view);
+
 t_scene
 scene_create(t_heightmap map, t_view view, t_renderer renderer);
 
