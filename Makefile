@@ -51,7 +51,7 @@ OBJ		:= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Compilation
 CC			= clang
 
-export	_CCFLAGS	?= -g -fsanitize=address
+export	_CCFLAGS	?= -O3
 export	_CPPFLAGS	?= -Wall -Werror -Wextra
 
 bonus:	_CPPFLAGS	+= -D BONUS
