@@ -35,7 +35,6 @@ SRC		:=								\
 	render/create_frame.c				\
 	render/draw_line.c					\
 	render/draw_pixel.c					\
-	render/gradient.c					\
 	render/renderer_create.c			\
 	render/renderer_destroy.c			\
 	render/render_next_frame.c			\
